@@ -37,7 +37,7 @@
 
                 stringToDate: function (dateString, format) {
                     if (this.isDate(dateString)) return new Date(dateString);
-                    var momentObj = moment(dateString, format);
+                    var momentObj = moment(dateString, format.toUpperCase());
                     if (momentObj.isValid()) {
                         return momentObj.hour(3).toDate();
                     }
