@@ -29,7 +29,7 @@
             };
         })
 
-        .factory('pickadateUtils', function ($locale, moment) {
+        .factory('pickadateUtils', ['$locale', 'moment', function ($locale, moment) {
             return {
                 isDate: function (obj) {
                     return Object.prototype.toString.call(obj) === '[object Date]';
@@ -76,7 +76,7 @@
                     return dayNames;
                 }
             };
-        })
+        }])
 
         .directive('pickadate', ['$locale', 'pickadateUtils', 'pickadateI18n', 'dateFilter', function ($locale, dateUtils, i18n, dateFilter) {
             return {
@@ -154,7 +154,7 @@
                         for (var i = 0; i < allDates.length; i++) {
                             var className = "",
                                 dateObj = allDates[i],
-                                dateStr = dateFilter(dateObj,dateFormat)
+                                dateStr = dateFilter(dateObj, dateFormat);
 
                             if (dateObj < scope.minDate || dateObj > scope.maxDate || dateFilter(dateObj, 'M') !== currentMonth.toString()) {
                                 className = 'pickadate-disabled';
